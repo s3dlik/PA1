@@ -10,6 +10,7 @@ def readFinalList(IdList):
 
 def fetch(url):
         with urllib.request.urlopen(url) as response:
+            print(url)
             html = response.read()
             data = json.loads(html)
             IdList = []
@@ -17,6 +18,13 @@ def fetch(url):
         
         readFinalList(IdList)     
 
+
+
+def fetch2(id):
+    url = 'https://name-service.appspot.com/api/v1/names/{}.json'.format(id)
+    with urllib.request.urlopen(url) as response:
+        print(url)
+        #print(response.read())
 
 
 def toList(val):
@@ -27,5 +35,5 @@ def toList(val):
 
 if __name__ == '__main__':
     with Pool(5) as p:
-        p.map(fetch, toList(NUMBER_OF_PEOPLE))
+        p.map(fetch2, [1,2,3,4,5,6,7,8,9,10])
     
